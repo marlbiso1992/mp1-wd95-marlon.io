@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form>
+
+        <div id="status"></div> 
+        <input type="text" id="username" value="">
+        <input type="password" id="password" value="">
+        <br />
+        <input type="button" value="Login" onclick="loginProcess()" />
+
+    </form>    
+
+
+    <script src="login.js"></script>
+
+    <script>
+
+        function loginProcess() {
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            const loginObj = new Login(username, password);
+            
+            let userOk = loginObj.validateUsername();
+            let passOk = loginObj.vaidatePassword();
+            if (userOk) {
+                if (passOk) { 
+                document.getElementById("status").innerHTML = 'Username and Password is OK';  
+                } else {
+                document.getElementById("status").innerHTML = loginObj.passWordErrorLog;
+                }
+                return;
+
+            } else {
+               document.getElementById("status").innerHTML = loginObj.userNameErrorLog;
+            }
+
+            
+           
+        }
+
+
+
+
+    </script>
+    
+</body>
+</html>

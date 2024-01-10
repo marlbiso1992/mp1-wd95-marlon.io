@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+    <form action="/path_going_server.php" method="post" onsubmit="validateForm()">
+
+        <input type="text" name="fname" required> <br />
+
+        <input type="text" name="lastname" required> <br />
+        
+        <br />
+
+        <input type="submit" value="Submit">
+      
+    </form>
+
+  
+
+
+<script>
+        
+        function validateForm() {
+            
+            let fname = document.forms[0].fname.value;
+            let lastname = document.forms[0].lastname.value;
+    
+            if (fname == "") {
+                alert("First name must be filled out");
+                return false;
+            }
+    
+            if (lastname == "") {
+                alert("Last name must be filled out");
+                return false;
+            }
+    
+        }
+    
+        //document.forms[0].onsubmit = validateForm;
+</script>
+
+</body>
+</html>
