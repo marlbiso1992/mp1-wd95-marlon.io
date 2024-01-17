@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node Render Html</title>
+
+    <script>
+
+        const loginUser = localStorage.getItem('loginUser');
+        console.log(loginUser);
+        if (loginUser !== '') {
+
+            const loginUserObj = JSON.parse(loginUser);
+
+            alert(loginUserObj.username + ' ' + loginUserObj.password + ' ' + loginUserObj.id);
+
+        } else {
+
+            alert('this is a secured page, need to login first');
+            window.location.href = 'http://localhost:3000/login';
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <p>Welcome to my MP2</p>
+    
+</body>
+</html>

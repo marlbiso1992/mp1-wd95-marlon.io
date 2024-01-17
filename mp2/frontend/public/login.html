@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    
+    <form>
+        <label for="username">Username</label> <br />
+        <input type="text" name="username" id="username" placeholder="Enter your username"> <br />
+        <label for="password">Password</label> <br />
+        <input type="password" name="password" id="password" placeholder="Enter your password"> <br />
+
+    <br />        
+    <button type="button" id="formSubmit">Login</button>
+    </form>
+
+
+<script>
+
+
+processLogin = (event) => {
+event.preventDefault();
+
+const webservice_api_url = 'http://localhost:5000/login-validation';
+
+const username = document.getElementById('username').value;
+const password = document.getElementById('password').value;
+
+const data = {
+    username: username,
+    password: password
+}
+
+const requestOption = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+};
+
+fetch(webservice_api_url, requestOption)
+    .then( response => response.json() )
+    .then(data => {
+        console.log('check here:', data);
+
+        if (data.code == 'success') {
+            alert(data.msg);
+            alert(data.loginUser.username + ' ' + data.loginUser.password + ' ' + data.loginUser.id);
+
+            localStorage.setItem('loginUser', JSON.stringify(data.loginUser));
+            window.location.href = 'http://localhost:3000/';
+        } else {
+            alert(data.msg);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
+
+
+
+document.getElementById('formSubmit').addEventListener('click', processLogin);
+
+</script>
+
+</body>
+</html>
