@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors")
 
-app.use(express.urlencoded({ extended:true }))
-app.use(express.json())
+app.use(express.urlencoded({ extended:true })) //for form submission
+app.use(express.json()) //json response
 app.use(
     cors(
-        { origin : "http://localhost:3000" }
+        { origin : "http://localhost:3000" }  //front end
     )
 )
 
@@ -16,22 +16,145 @@ const userDB = [
         id: 1,
         username: "admin",
         password: "password123",
-        status: 1
+        status: 1,
+        email: "myTest@yahoo.com"
     },
     {
         id: 2,
         username: "staff",
         password: "123",
-        status: 0
+        status: 0,
+        email: "staff@google.com"
     }
 
 ]
+//CRUD  create, read, update, delete
+const profileDB = [
+    {
+        id:1,
+        firstname : "James",
+        lastname : "Bond",
+        phone : "97987",
+        address : "New York USA",
+        email : "james@yahoo.com",
+    },
+    {   
+        id:2,
+        firstname : "Peter",
+        lastname : "Pan",
+        phone : "97987",
+        address : "California USA",
+        email : "peter@yahoo.com",
+    },
+    {
+        id:3,
+        firstname : "Michael",
+        lastname : "Jordan",
+        phone : "97987",
+        address : "California USA",
+        email : "mic@google.com",
+    },
+    {
+        id:4,
+        firstname : "Vic",
+        lastname : "Saints",
+        phone : "9742342987",
+        address : "CDO Mindanao",
+        email : "vic@google.com",
+    },
+];
 
+app.get('/all-profiles', (req, res)=>{
+    res.json(profileDB)
+})
+
+app.get('/one-profile/:id', (req, res)=>{
+   const profileId = req.params.id;
+   const userFound = profileDB.find( 
+            (user)=>{
+                return parseInt(profileId) === parseInt(user.id)   
+            } 
+    )
+    if (userFound){
+        res.json(userFound);
+    } else {
+        res.status(400).json("Invalid Id")
+    }
+})
+
+app.put('/update-user/:userId', (req, res)=>{
+    const user_id = req.params.userId;
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let phone = req.body.phone;
+    let address = req.body.address;
+    let email = req.body.email;
+
+    const updateUserRecord = {
+        id: user_id,
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        address: address,
+        email: email,
+    }
+
+   const updateThisRecord =  profileDB.findIndex( (obj) => obj.id == user_id );
+   profileDB[updateThisRecord] = updateUserRecord;
+
+   if (profileDB) {
+        res.json(
+            {
+                code : "success",
+                msg : "Update Done"
+            }
+        )
+   } else {
+      res.status(400).json(
+        {
+            code : "failed",
+            msg : "Error encountered while updating"
+        }
+      )
+   }
+
+})
+
+ 
+app.post('/registration', (req, res)=>{
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let phone = req.body.phone;
+    let address = req.body.address;
+    let email = req.body.email;
+
+    idCount = profileDB.length + 1;
+    const newRecord = {
+        id: idCount,
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        address: address,
+        email: email,
+    }
+    
+  const saveStatus = profileDB.push(newRecord);  
+   if (saveStatus) {
+     res.status(200).json(
+        { code: "success", msg:"registration successful" }   
+     )
+   } else {
+     res.status(401).json(
+        { code: "failed", msg:"registration error in saving" }   
+     )
+   }
+
+})
 
 app.post('/login-validation', (req, res)=>{
     let username_login = req.body.username;
     let password_login = req.body.password;
-   console.log()
+
    const user = userDB.find(
         (ob)=>{
           return ob.username === username_login && ob.password === password_login 
@@ -41,7 +164,7 @@ app.post('/login-validation', (req, res)=>{
     if (user) {
 
         res.status(200).json(
-           { code: "success", msg:"Username and Password matched a record", loginUser:user }   
+           { code: "success", msg : "Username and Password matched a record", loginUser : user }   
         )
 
     } else {

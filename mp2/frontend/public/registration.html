@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div></div>
+    <form>
+        <label for="firstname">Firstname</label> <br />
+        <input type="text" name="firstname" id="firstname" placeholder="Enter your firstname"> <br />
+        <label for="lastname">Lastname</label> <br />
+        <input type="lastname" name="lastname" id="lastname" placeholder="Enter your lastname"> <br />
+        <label for="phone">Phone</label> <br />
+        <input type="text" name="phone" id="phone" placeholder="Enter your phone"> <br />
+        <label for="address">Address</label> <br />
+        <input type="address" name="address" id="address" placeholder="Enter your address"> <br />
+        <label for="email">Email</label> <br />
+        <input type="email" name="email" id="email" placeholder="Enter your email"> <br />
+
+    <br />        
+    <button type="button" id="formSubmit">Submit</button>
+    </form>
+
+
+<script>
+
+
+processReg = (event) => {
+event.preventDefault();
+
+const webservice_api_url = 'http://localhost:5000/registration';
+
+const firstname = document.getElementById('firstname').value;
+const lastname = document.getElementById('lastname').value;
+const phone = document.getElementById('phone').value;
+const address = document.getElementById('address').value;
+const email = document.getElementById('email').value;
+
+//validation empty fields
+
+const data = {
+    firstname: firstname,
+    lastname: lastname,
+    phone: phone,
+    address: address,
+    email: email,
+}
+
+const requestOption = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+};
+
+fetch(webservice_api_url, requestOption)
+    .then( response => response.json())
+    .then(data => {
+        console.log(data.regUser);
+
+        if (data.code == 'success') {
+            alert(data.msg);
+        } else {
+            alert(data.msg);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
+
+
+
+document.getElementById('formSubmit').addEventListener('click', processReg);
+
+</script>
+
+</body>
+</html>
