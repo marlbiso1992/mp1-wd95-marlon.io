@@ -20,7 +20,6 @@
 
 <script>
 
-
 //arrow function
 processLogin = (event) => {
 event.preventDefault();
@@ -32,9 +31,6 @@ const passwordTextfiled = document.getElementById('password');
 
 const username_entry = userNameTextfiled.value; //data from textfield
 const password_entry = passwordTextfiled.value; //data from textfield
-
-
-
 
 //created an object
 const data = {
@@ -78,11 +74,7 @@ fetch(webservice_api_url, requestOption)
         document.getElementById('displayError').innerHTML = error;
     });
 
-
-
-
 document.getElementById('formSubmit').addEventListener('click', processLogin);
-
 </script>
 
 </body>

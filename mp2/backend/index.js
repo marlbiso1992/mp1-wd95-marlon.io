@@ -141,7 +141,7 @@ app.post('/registration', (req, res)=>{
   const saveStatus = profileDB.push(newRecord);  
    if (saveStatus) {
      res.status(200).json(
-        { code: "success", msg:"registration successful" }   
+        { code: "success", msg:"registration successful",profileDB }   
      )
    } else {
      res.status(401).json(
@@ -168,7 +168,7 @@ app.post('/login-validation', (req, res)=>{
         )
 
     } else {
-       res.status(401).json({ code: "failed", msg:"Incorrect Username and Password testing"}) 
+       res.status(400).json({ code: "failed", msg:"Incorrect Username and Password testing"}) 
     }
 
 

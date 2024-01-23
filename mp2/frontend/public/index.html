@@ -22,7 +22,7 @@
 <body>
     <p>Welcome to my MP2</p>
     <p id="checkServer"></p>
-    <button id='add' class='btn btn-success'>Add</button>
+    <button id='addReg' class='btn btn-success'>Add</button>
     
     <table class="table table-dark table-striped" id="myTable">
         <tr class="table-primary">
@@ -52,7 +52,9 @@
     </table>
 
     <script>
-
+         document.getElementById("addReg").onclick = function () {
+            window.location.href = '/registration/';
+    };
       async function callAllPRofiles() {
 
         const result = await fetch('http://localhost:5000/all-profiles'); //requesting
@@ -93,10 +95,8 @@
         window.location.href = '/delete/'+id;
       }
 
-
-
       callAllPRofiles();
-
+      
     </script>
     
 </body>
