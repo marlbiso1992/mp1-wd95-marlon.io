@@ -3,11 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Submit Message</title>
 </head>
 <body>
-    
-    <p> This is the contact us page </p>
+    <div></div>
+    <form>
+        <label for="fullname">Fullname</label> <br />
+        <input type="text" name="fullname" id="fullname" placeholder="Enter your Fullname"> <br />
+        <label for="emailaddress">Email Address</label> <br />
+        <input type="emailaddress" name="emailaddress" id="emailaddress" placeholder="Enter your Email Address"> <br />
+        <label for="message">Message</label> <br />
+        <input type="message" name="message" id="message" placeholder="Enter your Message"> <br />
+    <br />        
+    <button type="button" id="formSubmit">Submit Message</button>
+    </form>
+
+
+<script>
+
+
+processMsg = (event) => {
+event.preventDefault();
+
+const webservice_api_url = 'http://localhost:5000/contact-us';
+
+const firstname = document.getElementById('fullname').value;
+const lastname = document.getElementById('emailaddress').value;
+const phone = document.getElementById('message').value;
+//validation empty fields
+
+const data = {
+    fullname: fullname,
+    emailaddress: emailaddress,
+    message: message,
+}
+
+const requestOption = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+};
+
+fetch(webservice_api_url, requestOption)
+    .then( response => response.json())
+    .then(data => {
+       // console.log(data.profileDB);
+        if (data.code=='success') {
+                  console.log('Success:', data.messageDB);
+                  //alert(data.msg);
+                  //window.location.href = "http://localhost:3000/";
+                }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
+
+
+
+document.getElementById('formSubmit').addEventListener('click', processMsg);
+
+</script>
 
 </body>
 </html>

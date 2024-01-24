@@ -39,7 +39,9 @@ app.get('/logout', (req, res)=>{
 app.get('/registration', (req, res)=>{
     res.sendFile(__dirname + '/public/registration.html');
 })
-
+app.get('/home', (req, res)=>{
+    res.sendFile(__dirname + '/public/home.html');
+})
 
 
 

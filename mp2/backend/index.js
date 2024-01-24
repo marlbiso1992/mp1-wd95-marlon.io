@@ -64,6 +64,8 @@ const profileDB = [
     },
 ];
 
+const messageDB = [];
+
 app.get('/all-profiles', (req, res)=>{
     res.json(profileDB)
 })
@@ -174,6 +176,32 @@ app.post('/login-validation', (req, res)=>{
 
 })
 
+app.post('/contact-us', (req, res)=>{
+    let fullname = req.body.fullname;
+    let emailaddress = req.body.emailaddress;
+    let message = req.body.message;
+
+    msgCount = messageDB.length + 1;
+
+    const newMsg = {
+        msg: msgCount,
+        fullname: fullname,
+        emailaddress: emailaddress,
+        message: message,
+    }
+    
+  const saveMsg = messageDB.push(newMsg);  
+   if (saveMsg) {
+     res.status(200).json(
+        { code: "success", msg:"New message Added",messageDB }   
+     )
+   } else {
+     res.status(400).json(
+        { code: "failed", msg:"Error Msg added error in saving" }   
+     )
+   }
+
+})
 //HTTP METHODS
 //GET, POST, PUT, HEAD, DELETE, PATCH
 app.get('/test/:num1/:num2', (req, res) => {

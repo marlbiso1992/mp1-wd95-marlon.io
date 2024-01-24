@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class ="container-fluid text-center mt-5">
+        <h1>Welcome to Your Website</h1>
+        <p>A short description of your website goes here</p>
+    </header>
+    <section class="container mt-4">
+        <div class="row">
+            <div class ="col-md-10">
+                <h2>Main Content</h2>
+                <p id="main_p_content"></p>
+                <p>This is sample parahgraph</p>
+                <button>Click</button>
+            </div>
+            <div class ="col-md-2">
+                <h2>Side Content</h2>
+                <p>Your side content goes here</p>
+                <button>Click</button>
+            </div>
+        </div>
+    </section>
+<script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    async function loadHomePageContent(){
+        const result = await fetch('http://localhost:5000/page-content/home');
+        const data = await result.json();
+        document.getElementById('main_p_content').innerHTML = data;
+    }
+
+    loadHomePageContent();
+</script>
+<script>
+$(document).ready(
+    function(){
+//code area
+alert('My jquery is ready')
+})
+  /*  $(function(){
+
+    })
+</script>
+
+</body>
+</html>

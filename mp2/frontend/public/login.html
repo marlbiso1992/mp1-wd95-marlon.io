@@ -38,33 +38,22 @@ const data = {
     password: password_entry
 }
 
+//basic req transact fetch
 const requestOption = {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-       // 'Beare Token': + localStorage.getItem('token')
     },
     body: JSON.stringify(data),
 };
 
 fetch(webservice_api_url, requestOption)
-    .then( 
-        reponse => {    
-            if(!reponse.ok){
-                throw new Error('Network response was not ok'); 
-            }    
-            return response.json()
-        }
-    )
+    .then( response => response.json())
     .then(data => {
-        
         console.log('check here:', data);
-
         if (data.code == 'success') {
-          
             localStorage.setItem('loginUser', JSON.stringify(data.loginUser));
             window.location.href = 'http://localhost:3000/';
-
         } else {
             alert(data.msg);
         }
@@ -73,8 +62,9 @@ fetch(webservice_api_url, requestOption)
         console.log(error);
         document.getElementById('displayError').innerHTML = error;
     });
-
+}
 document.getElementById('formSubmit').addEventListener('click', processLogin);
+
 </script>
 
 </body>
