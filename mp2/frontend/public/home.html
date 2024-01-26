@@ -1,51 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header class ="container-fluid text-center mt-5">
-        <h1>Welcome to Your Website</h1>
-        <p>A short description of your website goes here</p>
-    </header>
-    <section class="container mt-4">
-        <div class="row">
-            <div class ="col-md-10">
-                <h2>Main Content</h2>
-                <p id="main_p_content"></p>
-                <p>This is sample parahgraph</p>
-                <button>Click</button>
-            </div>
-            <div class ="col-md-2">
-                <h2>Side Content</h2>
-                <p>Your side content goes here</p>
-                <button>Click</button>
-            </div>
-        </div>
-    </section>
-<script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    async function loadHomePageContent(){
-        const result = await fetch('http://localhost:5000/page-content/home');
-        const data = await result.json();
-        document.getElementById('main_p_content').innerHTML = data;
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+      body {
+        padding-top: 56px; /* Adjust according to your navigation bar height */
+      }
+  
+      @media (min-width: 992px) {
+        body {
+          padding-top: 70px; /* Adjust according to your navigation bar height */
+        }
+      }
+    </style>
+  <!--  <script src="https://cdn.tiny.cloud/1/tp86hklgwdc1no1hk32chzlgz0y9vo311illnh5yk0ow3jwy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  -->
+  <style>
+
+    .mysampleClass {
+      background-color: yellow;
+      color: red;
+      font-size: 20px;
     }
 
-    loadHomePageContent();
-</script>
-<script>
-$(document).ready(
-    function(){
-//code area
-alert('My jquery is ready')
-})
-  /*  $(function(){
+  </style>
 
-    })
+  </head>
+
+<body>
+
+    
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Your Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Header -->
+  <header class="container-fluid text-center mt-5">
+    <h1>Welcome to Your Website</h1>
+    <div id="result">No result yet</div>
+    <p>A short description of your website goes here.</p>
+
+    <div id="div1" style="width:80px;height:80px;background-color:red;"> SAmple Content Div 1 area</div>
+    <div id="div2" style="width:80px;height:80px;background-color:green;"> SAmple Content Div 2 area <a>link</a></div>
+
+    <div style="display: flex;">
+        
+        <div style=" width: 30%; border: 1px solid gray;">
+            <p id="productName_p1">Keyboard</p>
+            <p id="price_p1">500.00</p>
+            <p id="category_p1">Gaming</p>
+            <button id="p1" class="btn btn-success">Add to Cart</button>
+        </div>
+
+        <div style="width: 30%; border: 1px solid gray;">
+          <p id="productName_p2">Mouse</p>
+          <p id="price_p2">500.00</p>
+          <p id="category_p2">Gaming</p>
+          <button id="p2" class="btn btn-success">Add to Cart</button>
+      </div>
+
+      <div style="width: 30%; border: 1px solid gray;">
+        <p id="productName_p3">Laptop</p>
+        <p id="price_p3">150,000.00</p>
+        <p id="category_p3">Programming</p>
+        <button id="p3" class="btn btn-success">Add to Cart</button>
+    </div>
+
+    </div>
+
+  </header>
+  
+  <!-- Main Content -->
+  <section class="container mt-4">
+    
+    <div class="row">
+      
+        <div class="col-md-10">
+        <h2>Main Content</h2>
+        <p id="main_p_content" ></p>
+
+       <input type="text" id="myTestField" value=""> 
+
+
+        <p>This is the sample parahgraph</p> 
+        <button id="buttonHide">CLick to Hide</button>
+        <button id="buttonShow">CLick to Show</button>
+
+        <button id="buttonEffects">CLick for Effects</button>
+
+        <br>
+        <button id="addText">Click for Paragraphs </button>
+
+        <button id="tryCSSclass">CSS example1</button>
+
+        <br>
+
+        <button id="myAjax">My First Ajax POST</button>
+        
+        <button id="myAjaxGet">My First Ajax GET</button>
+        
+
+
+    </div>
+
+    <div class="col-md-2">
+        <h2>Side Content</h2>
+        <p>Your side content goes here.</p>
+    </div>
+    
+  </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="container-fluid text-center mt-5">
+    <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+  </footer>
+  
+  <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+  <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+async function loadHomePageContent() {
+    const result = await fetch('http://localhost:5000/page-content/home'); //requesting
+    const data = await result.json();
+    document.getElementById('main_p_content').innerHTML = data;
+}
+//loadHomePageContent();
+</script>
+
+
+
+
+<script>
+
+ $(document).ready(function() {
+
+  $.get("http://localhost:3000/call-me", 
+        function(data, status) {
+           
+          if(status=='success'){
+            console.log(data);
+            $("h1").text('You have '+ data.length +' products in your cart' );
+          }  
+  });
+
+    //coding area
+    $("#myTestField").val("Hello World"); //setting a value in textfield
+
+    $("h2").css("background-color", "yellow");
+    $("h2").css("color", "green");
+
+    let newVariable = $("#myTestField").val();
+
+    $('#buttonHide').click(function() {
+       $("p").hide();
+       $("#div1").remove();
+       $("#div2").empty();
+    });  
+
+    $('#buttonShow').click(function() {
+        $("p").show();
+    });  
+
+
+    $('#buttonEffects').click(function() {
+      //alert("test");
+     // $("#div1").fadeIn("slow");
+     // $("#div2").fadeIn(5000);
+
+     $("#div1").html(100); //setting
+     $("#div2").html(25); //setting
+      
+     let num1 = $("#div1").html(); //getting
+     let num2 = $("#div2").html();
+     
+      let x = parseInt(num1);
+      let y = parseInt(num2);
+      
+      let sum = x + y;
+
+      $("#result").html(sum); //setting
+      $("#myTestField").val(""); //setting a value in textfield
+
+    });
+
+    $("#addText").click(function() {
+      let txt = $("#myTestField").val(); //getting
+      $("p").append(" " + txt);  //append, prepend, after, before
+    });
+
+    $("#tryCSSclass").click(function() {
+      $("h1").addClass("mysampleClass");
+    });
+
+    $("#myAjax").click(function() {
+     
+      let ProductName = $("#productName_p1").text();
+      let ProductPrice = $("#price_p1").text();
+      let ProductCategory = $("#category_p1").text();
+
+      const myPObject =  {
+          productName: ProductName,
+          price: ProductPrice,
+          category: ProductCategory
+        } 
+      console.log(myPObject);
+     
+      //Jquery-AJAX
+      $.post("http://localhost:3000/call-me", myPObject,
+        function(data, status) {
+         // console.log(status);
+          if(status == 'success'){
+              console.log(data);
+              $("h1").html(data);  //setting
+          }  
+        }
+        );
+    }); //end of button
+    
+    $("#myAjaxGet").click(function(){
+
+       $.get("http://localhost:3000/call-me", 
+        function(data, status) {
+           
+          if(status=='success'){
+            console.log(data);
+            $("h1").text('You have '+ data.length +' products in your cart' );
+          }  
+      });
+    });   
+    
+    $("#p1").click(function(){ 
+      addToCart('p1');
+    });
+
+    $("#p2").click(function(){ 
+      addToCart('p2');
+    });
+
+    $("#p3").click(function(){ 
+      addToCart('p3'); 
+    });
+
+
+ });
+
+ function addToCart(ind){
+
+  let ProductName = $("#productName_"+ind).text();
+  let ProductPrice = $("#price_"+ind).text();
+  let ProductCategory = $("#category_"+ind).text();
+
+      const myPObject =  {
+          productName: ProductName,
+          price: ProductPrice,
+          category: ProductCategory
+        } 
+      console.log(myPObject);
+     
+      //Jquery-AJAX
+      $.post("http://localhost:3000/call-me", myPObject,
+        function(data, status) {
+         // console.log(status);
+          if(status == 'success'){
+              console.log(data);
+              $("h1").html(data);  //setting
+          }  
+        }
+        );
+
+ }
+
+
+/*
+  $(function() {
+    //coding area
+
+
+  });
+*/
+</script>
+
+
+<script>
+/*  tinymce.init({
+    selector: 'textarea',
+     // change this value according to your HTML
+   width: 300,
+   height:200
+   /* plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")), 
+  });*/
 </script>
 
 </body>

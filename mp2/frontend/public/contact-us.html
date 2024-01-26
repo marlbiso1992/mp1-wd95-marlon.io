@@ -11,60 +11,54 @@
         <label for="fullname">Fullname</label> <br />
         <input type="text" name="fullname" id="fullname" placeholder="Enter your Fullname"> <br />
         <label for="emailaddress">Email Address</label> <br />
-        <input type="emailaddress" name="emailaddress" id="emailaddress" placeholder="Enter your Email Address"> <br />
+        <input type="email" name="emailaddress" id="emailaddress" placeholder="Enter your Email Address"> <br />
         <label for="message">Message</label> <br />
-        <input type="message" name="message" id="message" placeholder="Enter your Message"> <br />
-    <br />        
-    <button type="button" id="formSubmit">Submit Message</button>
+        <!-- <input type="text" name="message" id="message" placeholder="Enter your Message"> <br /> -->
+        <textarea name="message" id="message" placeholder="Enter your Message"></textarea>
+        <br />
+        <button type="button" id="formSubmit">Submit Message</button>
     </form>
 
-
 <script>
+    processMsg = (event) => {
+        event.preventDefault();
 
+        const webservice_api_url = 'http://localhost:5000/contact-us';
+        const fullname = document.getElementById('fullname').value;
+        const emailaddress = document.getElementById('emailaddress').value;
+        const message = document.getElementById('message').value;
 
-processMsg = (event) => {
-event.preventDefault();
+ 
 
-const webservice_api_url = 'http://localhost:5000/contact-us';
+        const data = {
+            fullname: fullname,
+            emailaddress: emailaddress,
+            message: message,
+        }
 
-const firstname = document.getElementById('fullname').value;
-const lastname = document.getElementById('emailaddress').value;
-const phone = document.getElementById('message').value;
-//validation empty fields
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        };
 
-const data = {
-    fullname: fullname,
-    emailaddress: emailaddress,
-    message: message,
-}
-
-const requestOption = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data),
-};
-
-fetch(webservice_api_url, requestOption)
-    .then( response => response.json())
-    .then(data => {
-       // console.log(data.profileDB);
-        if (data.code=='success') {
-                  console.log('Success:', data.messageDB);
-                  //alert(data.msg);
-                  //window.location.href = "http://localhost:3000/";
+        fetch(webservice_api_url, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 'success') {
+                    console.log('Success:', data.RegMsg);
+                    alert(data.msg);
+         
                 }
-    })
-    .catch(error => {
-        console.log(error);
-    });
-}
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
-
-
-document.getElementById('formSubmit').addEventListener('click', processMsg);
-
+    document.getElementById('formSubmit').addEventListener('click', processMsg);
 </script>
 
 </body>

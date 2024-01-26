@@ -64,7 +64,18 @@ const profileDB = [
     },
 ];
 
-const messageDB = [];
+const messageDB = [
+    {
+        fullname: "Julie Ice",
+        emailaddress: "julieice@gmail.com",
+        message: "Life is too short buy the damn shoes",
+    },
+    {
+        fullname: "Vic Santos",
+        emailaddress: "vic@gmail.com",
+        message: "Thank you for making learning an enjoyable experience",
+    },
+];
 
 app.get('/all-profiles', (req, res)=>{
     res.json(profileDB)
@@ -193,7 +204,7 @@ app.post('/contact-us', (req, res)=>{
   const saveMsg = messageDB.push(newMsg);  
    if (saveMsg) {
      res.status(200).json(
-        { code: "success", msg:"New message Added",messageDB }   
+        { code: "success", msg:"New message Added",RegMsg: messageDB }   
      )
    } else {
      res.status(400).json(
