@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  line-height: 2;
+}
+.Header {
+  background-color:  #473DC6;
+  font-weight: bold;
+  font-size: larger;
+  height: 6rem;
+  padding-top: 1.2rem;
+  
+}
+.navbar {
+  display: inline-block;  /*to make sure .navbar accepts width*/
+margin:auto;
+  width: 90%;
+}
+
+.Login, .Register{
+  padding: 5rem;
+  height: 100%;
+  background-color: #e2e8f0;
+}
+
+.Footer h2, .Footer h5 {
+  margin-top: 1.5rem;
+}
+.fpadding{
+  padding: 4rem;
+}
+.footernav{
+  background-color: #443BB2;
+  font-size: large;
+  font-weight: bolder;
+  padding: 1rem;
+}
+
+
+
+/* Responsive media queries */
+@media only screen and (max-width: 600px) {
+  /* Adjust styles for smaller screens */
+  body {
+    font-size: 14px;
+    margin: auto;
+  }
+.banner-img {
+    width: 190%;
+    margin-left: -45%;
+}
+.fpadding{
+  text-align: center;
+}
+.btncontactus, .justify-content-md-center {
+  margin: auto !important;
+}
+.boxwhowearetextimg{
+  width: 30% !important;
+}
+}
+
+
+
+
+
+.formbox{
+  background-color: #473DC6;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+  0 10px 10px rgba(0,0,0,0.22);
+  min-height: 500px;
+  max-height: 100%;
+  }     
+.ErrMsg{
+  color: red;
+  font-size: small;
+  font-style: italic;
+}
+  
+.formboxleft{
+  background-color:white;
+  padding: 5rem !important;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  }     
+.regboxright{
+    background-color:white;
+    padding: 5rem !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-weight: bolder;
+    font-size: larger;
+}   
+  .mb-3{
+  margin: 2rem auto;
+  }
+
+  .mb-1{
+    margin: 1rem auto;
+    }
+  .btnright{
+   margin: 10% 0 2% 62%;
+   padding: 8px 40px !important;
+    }
+    .btnregright{
+      margin: 10% 0 2% 80%;
+      padding: 8px 35px !important;
+       }
+.formboxtight{
+  padding: 50px;
+  color: white;
+}
+.signuplink{
+  padding-top: 60px;
+}
+.btncontactus{
+  padding-top:20px !important;
+  margin:3rem 1rem !important;
+}
+
+.contactusbox{
+  margin: 3rem;
+  padding: 3rem 7rem !important;
+  border-radius: 1rem;
+box-shadow: 0px 10px 8px #999;
+background-color: #e2e8f0;
+}

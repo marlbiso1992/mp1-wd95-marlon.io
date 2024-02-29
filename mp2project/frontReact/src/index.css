@@ -1,0 +1,65 @@
+
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a box-sizing border-box model globally */
+* {
+  box-sizing: border-box;
+}
+
+/* Set a base font size and line height */
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Define a container to center content and add padding */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Responsive media queries */
+@media only screen and (max-width: 600px) {
+  /* Adjust styles for smaller screens */
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+}
+
+
+.addForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.5rem 0 0;
+  padding: 0 0.5rem 0.25rem;
+  border: 1px solid coral;
+}
+
+.Login{
+  width: 20%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.Todo{
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.Product{
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+}

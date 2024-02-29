@@ -1,0 +1,37 @@
+.Profile, .UpdateProfile{
+    padding: 5rem;
+    background-color: #e2e8f0;
+}
+.profilebox{
+height: 100%;
+margin: 1rem!important;
+background-color: #473DC6;
+padding: 50px 0 10px 0;
+border: 0 solid rgba(0,0,0,.125);
+border-radius: .25rem;
+background-clip: border-box;
+box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.profilesidebox{
+    height: 100%;
+    margin: auto;
+    background-color: white;
+    padding  : 6rem 8rem !important;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    background-clip: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
+
+.profilecircle {
+    background-color: grey;
+    height: 200px;
+    border-radius: 50%;
+ 
+}
+.textcenter{
+    text-align: center;
+    padding: 2rem;
+    color: white;
+}
