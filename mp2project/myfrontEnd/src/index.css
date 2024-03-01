@@ -6,8 +6,9 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   line-height: 2;
+  
 }
-.Header {
+.Header, .Logout{
   background-color:  #473DC6;
   font-weight: bold;
   font-size: larger;
@@ -39,7 +40,6 @@ margin:auto;
   font-weight: bolder;
   padding: 1rem;
 }
-
 
 
 /* Responsive media queries */
@@ -129,4 +129,13 @@ margin:auto;
   border-radius: 1rem;
 box-shadow: 0px 10px 8px #999;
 background-color: #e2e8f0;
+}
+
+.logoimg{
+margin-top: -1rem !important;;
+height: 5rem;
+}
+
+.textcolor{
+  color: white !important
 }

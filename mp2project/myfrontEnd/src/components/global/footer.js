@@ -32,7 +32,7 @@ const Footer = ()=> {
               </Row>
         </Col>
         <Col md="auto">
-          <h2>LOGO</h2>
+          <h2><img className ="logoimg" src={require('../../images/logo.png')}/></h2>
            &copy; {new Date().getFullYear()} Copyright:{' '}
            WD95P MP2</Col>
       </Row>
@@ -43,12 +43,12 @@ const Footer = ()=> {
   <Row className="justify-content-md-center">
       <Col md="auto">
         <Nav>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
-          <Nav.Link href="/worker">Worker</Nav.Link>
-          <Nav.Link href="/review">Review</Nav.Link>
-          <Nav.Link href="/contactus">Contact us</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link className="textcolor"href="/">Home</Nav.Link>
+          <Nav.Link className="textcolor"href="/about">About</Nav.Link>
+          <Nav.Link className="textcolor"href="/worker">Worker</Nav.Link>
+          <Nav.Link className="textcolor"href="/review">Review</Nav.Link>
+          <Nav.Link className="textcolor"href="/contactus">Contact us</Nav.Link>
+          <Nav.Link className="textcolor"href="/login">Login</Nav.Link>
         </Nav>
       </Col>
     </Row>

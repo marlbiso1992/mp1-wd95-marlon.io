@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
-import { Link } from 'react-router-dom';
+import {Container, Table, Button} from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import apiRequest from '../../dataFetch/apiRequest';
 
 const Admin = () => {
   const [allTodo, setAllTodo] = useState([]);
-
+  const navigate = useNavigate(); 
   
   const handleReadData = async () => {
     const response = await fetch('http://localhost:5001/all-profiles');
@@ -12,14 +13,31 @@ const Admin = () => {
     setAllTodo(data);
   }
   useEffect(()=>{
+  const validateAccess = localStorage.getItem('loginUser');
+  if(validateAccess == null){
+    navigate('/login');
+  }
+else{
     handleReadData();
+}
   }, [])
  
+  const deleteItem = async (id)=> {
+
+    let text = "Are you sure to delete todo id number:" + id + "?";
+    if (window.confirm(text) === true) {
+  
+      const objReq = { method: 'DELETE'}
+      await apiRequest('http://localhost:5001/delete-todo/'+id, objReq);
+      handleReadData();
+    } 
+
+  }
   // on load page
     
     return (
         <div className='Admin'>
-
+      <Container>
         <Table striped bordered hover variant="light">
               <thead>
                 <tr>
@@ -48,6 +66,7 @@ const Admin = () => {
                     
                     <td>  
                     <Link className="text-decoration-none btn btn-sm btn-success" to={`/update-profile/${item.id}`}>Update</Link>
+                    <Link className="text-decoration-none btn btn-sm btn-danger"  onClick={ ()=> deleteItem(item.id) }>Delete</Link>
                       </td>
                   </tr>
                   ) 
@@ -57,7 +76,7 @@ const Admin = () => {
               </tbody>
             </Table>
 
-  
+            </Container>
 
         </div>
 

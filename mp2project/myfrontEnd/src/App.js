@@ -28,18 +28,13 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Register />} />
+ 
         </Route>
-        <Route element={<InnerRootLayout />}>   
-        <Route path='/user/:username' element={<Profile />} />
+        <Route element={<InnerRootLayout />}>
         <Route path='/admin' element={<Admin />} />
+        <Route path='/user/:username' element={<Profile />} />
         <Route path='/update-profile/:id' element={<UpdateProfile />} />
      </Route>
-
-   { /*  <Route element={<AdminLayout />}>  
-        <Route path='/home' element={<User />} />
-  </Route> */ }
-
-
     </Routes>
   );
 

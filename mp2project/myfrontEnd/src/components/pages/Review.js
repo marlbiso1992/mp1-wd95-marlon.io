@@ -1,9 +1,20 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { useState, useEffect } from 'react';
+import {Container, Row, Col, Card } from 'react-bootstrap';
 
 
 const Review = ()=> {
+  const [allTodo, setAllTodo] = useState([]);
+
+  const handleReadData = async () => {
+    const response = await fetch('http://localhost:5001/all-feedback');
+    const data = await response.json();
+    setAllTodo(data);
+    console.log(data)
+  }
+      
+  useEffect(()=>{
+    handleReadData();
+  }, [])
 
     return (
         <div className='Review'>
@@ -15,7 +26,26 @@ const Review = ()=> {
                 </Row>
               </Container>
             </div>
-            This is the Review
+            <Container>
+            <Row>
+        <Col className="workbox2">
+        {  allTodo.map(
+(item) => (
+        <Card className='cardbox'>
+      <Card.Body>
+        <Card.Text>
+        <h5><center><b>"{item.feedback}"</b></center></h5>
+        </Card.Text>
+        <Card.Text>
+        <h6><i><b>{item.fullname}</b></i></h6>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+
+)  ) }
+        </Col>
+      </Row>
+              </Container>
       </div>
     )
   }

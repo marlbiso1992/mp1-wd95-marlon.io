@@ -54,7 +54,6 @@ const userDB = [
         password: "123"
     }
 ]
-//CRUD  create, read, update, delete
 const profileDB = [
     {
         id:1,
@@ -177,13 +176,11 @@ const profileDB = [
         profession: "Driver",
     },
 ];
-
 const generateAccessToken = (user) =>{
     let token =  jwt.sign({ id: user.id, username: user.username, email: user.email }, "ThisMySecretKey", {});
     return token;       
-  }
-  
-  const middlewareVerification = (req, res, next) => {
+}
+const middlewareVerification = (req, res, next) => {
    const authHeader = req.headers.authorization;
    console.log(authHeader);
       if(authHeader) {
@@ -200,13 +197,10 @@ const generateAccessToken = (user) =>{
       } else {
           return res.status(403).json("Yor are not authenticated");
       }
-  }
-
-  
+}  
 app.get('/all-profiles', (req, res)=>{
     res.json(profileDB)
 })
-
 app.get('/username', (req, res)=>{
     res.json(userDB)
 })
@@ -239,7 +233,7 @@ app.get('/user-profile/:username', (req, res)=>{
      } else {
          res.status(400).json("Invalid Username")
      }
- })
+})
 app.post('/login-validation/', (req, res)=>{
     let username_login = req.body.username;
     let password_login = req.body.password;
@@ -269,52 +263,64 @@ app.post('/login-validation/', (req, res)=>{
 
 })
 app.post('/registration', (req, res)=>{
-    let passw = req.body.password;
     let usern = req.body.username;
-    let fname = req.body.firstname;
     let lname = req.body.lastname;
-    let phon = req.body.phone;
     let email = req.body.email;
-    let bdate = req.body.birthdate;
-    let gend = req.body.gender;
-    let natio = req.body.nationality;
-    let brgy = req.body.barangay;
-    let town = req.body.town;
-    let prov = req.body.province;
-    let prof = req.body.profession;
+    let fname = req.body.firstname;
+    let passw = req.body.password;
+    let cpassw = req.body.cpassword;
 
     const newRecord = {
         id:  profileDB.length + 1,
-        username: usern,
         firstname: fname,
         lastname: lname,
-        phone: phon,
         email: email,
-        birthdate: bdate,
-        gender: gend,
-        nationality: natio,
-        barangay: brgy,
-        town: town,
-        province: prov,
-        profession: prof,
+        username: usern,
+        
     }
     const newUserRec = {
         id: userDB.length + 1,
         username: usern,
         password: passw,
     } 
+if (usern ===""){
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+}
+if (lname ===""){
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+}
+if (email ===""){
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+}
+if (fname ===""){
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+}
 
-
-  const saveStatus = profileDB.push(newRecord) && userDB.push(newUserRec);  
-   if (saveStatus) {
-     res.status(200).json(
-        { code: "success", msg:"registration successful", saveStatus }   
-     )
-   } else {
-     res.status(401).json(
-        { code: "failed", msg:"registration error in saving" }   
-     )
-   }
+if (passw ===""){
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+}
+    else{  
+        const checkuserExist = userDB.find(
+        (cu)=>{return cu.username === usern}
+    );
+    if (checkuserExist) {
+        res.status(200).json({ code: "failed", msg:"Username Exist"}) 
+       }
+    else {
+    const saveStatus = profileDB.push(newRecord) && userDB.push(newUserRec);  
+        if (saveStatus) {
+             res.status(200).json({code: "success", msg:"registration successful", saveStatus })
+        }
+        else{
+            res.status(401).json({ code: "failed", msg:"registration error in saving" })
+        }
+    }
+}
 
 })
 app.put('/update-user/:userId', (req, res)=>{
@@ -368,28 +374,72 @@ app.put('/update-user/:userId', (req, res)=>{
    }
 
 })
+app.delete('/delete-todo/:todoId', (req, res)=>{
+    const todo_id = req.params.todoId;
+    const indexValue =  profileDB.findIndex( (obj) => obj.id == todo_id ) && userDB.findIndex( (obj) => obj.id == todo_id );
+    profileDB.splice(indexValue, 1) &&  userDB.splice(indexValue, 1); // 1, 1
 
-app.get('/delete-user/:userId', (req, res)=>{
-    const user_id = req.params.userId;
-    const indexValue =  profileDB.findIndex( (obj) => obj.id == user_id );
-    profileDB.splice(indexValue, 1);
-
-    if (profileDB) {
+    if (profileDB && userDB) {
         res.json(
             {
                 code : "success",
-                msg : "Delete Done"
+                msg : "Delete Todo Done"
             }
         )
    } else {
       res.status(400).json(
         {
             code : "failed",
-            msg : "Error encountered while deleting"
+            msg : "Error encountered while deleting todo"
         }
       )
    }
     
+})
+
+const feedBackDB = [
+    {
+        id: 1,
+        fullname: "admin",
+        feedback: "passwasdasord123"
+    },
+    {
+        id: 2,
+        fullname: "staff",
+        feedback: "1asdasdas23"
+    }
+]
+app.get('/all-feedback', (req, res)=>{
+    res.json(feedBackDB)
+})
+app.post('/sendfeedback', (req, res)=>{
+        let fullname = req.body.fullname;
+        let feedback = req.body.feedback; 
+
+        const newRecord = {
+            id:  feedBackDB.length + 1,
+            fullname: fullname,
+            feedback: feedback,        
+        }
+ if (fullname === "" ) {
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+ }   
+ if (feedback === "" ) {
+    res.status(401).json(
+        { code: "failed", msg:"Please fill-up required field" })
+ }   
+ else {
+  const savefeedStatus = feedBackDB.push(newRecord);
+       if (savefeedStatus) {
+         res.status(200).json(
+            { code: "success", msg:"Feedback send successful", savefeedStatus }   
+         )
+       } else {
+         res.status(401).json(
+            { code: "failed", msg:"error submission" }   
+         )
+       }}
 })
 
 app.listen(5001)

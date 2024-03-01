@@ -1,11 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiRequest from '../../dataFetch/apiRequest';
 
 
@@ -45,7 +40,13 @@ setProfession(data.profession);
 
 }
 useEffect(()=>{
+const validateAccess = localStorage.getItem('loginUser');
+  if(validateAccess == null){
+    navigate('/login');
+  }
+else{
  handleReadSingleData();
+}
 }, [])
 
 

@@ -1,10 +1,6 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 const Profile = ()=> {
   const [firstname, setFirstname] = useState('');
@@ -20,7 +16,8 @@ const Profile = ()=> {
   const [profession, setProfession] = useState('')
   const [id, setId] = useState('');
   const { username }  = useParams();
-  
+
+  const navigate = useNavigate(); 
   const handleReadSingleData = async () => {
   
   const response = await fetch('http://localhost:5001/user-profile/'+ username);
@@ -41,7 +38,13 @@ setProvince(data.province);
 setProfession(data.profession);
 }
 useEffect(()=>{
+  const validateAccess = localStorage.getItem('loginUser');
+  if(validateAccess == null){
+    navigate('/login');
+  }
+else{
   handleReadSingleData();
+}
 }, [])
 
     return (

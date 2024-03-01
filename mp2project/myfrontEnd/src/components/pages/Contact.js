@@ -1,7 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Contact = ()=> {
@@ -74,7 +71,7 @@ const Contact = ()=> {
                     </Form.Group>
                 </Col>
               </Row>
-              <Row md={4}><Link className="text-decoration-none btn btn-success btncontactus"><h6>Submit</h6></Link></Row>
+              <Row md={4}><Link className="text-decoration-none btn btn-primary btncontactus"><h6>Submit</h6></Link></Row>
             </Form> 
           </Col>
                 </Row>
